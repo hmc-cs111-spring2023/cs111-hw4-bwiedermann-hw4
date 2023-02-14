@@ -12,20 +12,31 @@ type Board = String
 val validColors = List('B', 'Y', 'R', 'G')
 
 /** Get a random color from the list of valid colors */
-def getRandomColor(): Color =
-  ???
+def getRandomColor(): Color = validColors(Random.nextInt(validColors.size))
 
 /** Given four colors, make a board from them */
 def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board =
-  ???
+  List(c1, c2, c3, c4).mkString
 
 /** Create a random board */
 def getRandomBoard(): Board =
-  ???
+  makeBoardFromColors(
+    getRandomColor(),
+    getRandomColor(),
+    getRandomColor(),
+    getRandomColor()
+  )
 
 /** Play one round of the game */
-def playRound(board: Board): (Int, Int) =
-  ???
+def playRound(board: Board): (Int, Int) = {
+  val guess1 = readLine("Enter a guess for spot 1: ")(0)
+  val guess2 = readLine("Enter a guess for spot 2: ")(0)
+  val guess3 = readLine("Enter a guess for spot 3: ")(0)
+  val guess4 = readLine("Enter a guess for spot 4: ")(0)
+  val guess = makeBoardFromColors(guess1, guess2, guess3, guess4)
+  val score = scoreGuess(board, guess)
+  score
+}
 
 /** Score a guess
   *
